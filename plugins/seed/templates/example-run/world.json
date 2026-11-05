@@ -1,0 +1,10 @@
+{
+  "note": "EXAMPLE DATA for the plugin demo. Real runs fill this from /seed:research with source links.",
+  "segments": [
+    { "id": "renter", "name": "Busy renters", "share": 3, "budget": [0, 8], "tech": "high", "current": ["guesses", "a free reminder app", "asks a friend"], "pains": ["plants die while travelling", "not sure if it's water or light"] },
+    { "id": "hobby", "name": "Plant hobbyists", "share": 2, "budget": [3, 20], "tech": "mid", "current": ["forums", "a paid plant app"], "pains": ["diagnosing pests", "too many apps"] },
+    { "id": "gift", "name": "Gifted a plant", "share": 1, "budget": [0, 3], "tech": "mid", "current": ["nothing"], "pains": ["no idea where to start"] }
+  ],
+  "rivals": [ { "name": "A free plant-ID app", "price": "free + ads", "url": "https://example.com/plant-id", "date": "2026-11-04" } ],
+  "evidence": [ { "kind": "Complaint", "text": "Forum thread: 'is it overwatering or too little light?' (example)", "url": "https://example.com/forum", "date": "2026-10-20" } ]
+}

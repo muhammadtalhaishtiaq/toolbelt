@@ -1,0 +1,5 @@
+[
+  { "id": "leafcheck", "name": "LeafCheck", "pitch": "Snap your plant; it tells you if it needs water, light or a bigger pot — and why.", "user": "renters with 3–15 houseplants", "magic": "Photo in, 'move it 1 m closer to the window' out, with the leaf outlined" },
+  { "id": "plantswap", "name": "PlantSwap", "pitch": "Swap cuttings with neighbours.", "user": "plant hobbyists", "magic": "A cutting from two doors down, today" },
+  { "id": "waterbot", "name": "WaterBot", "pitch": "A reminder app for watering.", "user": "forgetful owners", "magic": "A ping on watering day" }
+]
