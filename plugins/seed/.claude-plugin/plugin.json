@@ -1,0 +1,9 @@
+{
+  "name": "seed",
+  "version": "0.1.0",
+  "description": "Generate product ideas and test them on a simulated crowd before building: real-world research, structured personas with bias guards, three-round social simulation with a shock, counts in code, persona interviews, a go/pivot/kill verdict, IDEA-BRIEF.md for tools and a visual IDEA-BOARD.html for people.",
+  "author": { "name": "Talha Ishtiaq", "url": "https://github.com/muhammadtalhaishtiaq" },
+  "repository": "https://github.com/muhammadtalhaishtiaq/toolbelt",
+  "license": "MIT",
+  "keywords": ["ideas", "validation", "simulation", "personas", "market research"]
+}
