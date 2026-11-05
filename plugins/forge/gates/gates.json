@@ -1,0 +1,67 @@
+{
+  "$comment": "What each forge command needs first. check types are implemented in check.mjs. A requirement with 'profiles' only applies to those profiles. 'fix' is the exact command or action to suggest.",
+  "start": { "requires": [] },
+  "where": { "requires": [] },
+  "retro": { "requires": [] },
+  "rule": { "requires": [] },
+  "debug": { "requires": [] },
+  "feedback": { "requires": [] },
+  "constraints": { "requires": [ { "id": "project", "check": "file_exists", "path": "STATUS.md", "fix": "/forge:start" } ] },
+  "rules": { "requires": [ { "id": "project", "check": "file_exists", "path": "STATUS.md", "fix": "/forge:start" } ] },
+  "idea": { "requires": [ { "id": "project", "check": "file_exists", "path": "STATUS.md", "fix": "/forge:start" } ] },
+  "spike": {
+    "requires": [
+      { "id": "idea", "check": "any", "of": [
+        { "check": "file_exists", "path": "IDEA-BRIEF.md" },
+        { "check": "file_contains", "path": "docs/DECISIONS.md", "pattern": "(?i)direction chosen|idea chosen|pivot to|we are building" }
+      ], "fix": "/forge:idea (or /seed:run, or describe the idea)", "profiles": ["hackathon", "product", "experiment"] }
+    ]
+  },
+  "spec": {
+    "requires": [
+      { "id": "api-notes", "check": "any", "of": [
+        { "check": "file_contains", "path": "docs/API-NOTES.md", "pattern": "(?i)verified|status: ok|no external apis" }
+      ], "fix": "/forge:spike", "profiles": ["hackathon", "product", "experiment"] }
+    ]
+  },
+  "design": { "requires": [ { "id": "prd", "check": "file_exists", "path": "docs/PRD.md", "fix": "/forge:spec", "profiles": ["hackathon", "product"] } ] },
+  "ui": { "requires": [] },
+  "plan": {
+    "requires": [
+      { "id": "prd", "check": "file_exists", "path": "docs/PRD.md", "fix": "/forge:spec", "profiles": ["hackathon", "product", "experiment"] },
+      { "id": "no-open-questions", "check": "file_not_contains", "path": "docs/PRD.md", "pattern": "\\[NEEDS CLARIFICATION", "fix": "answer the [NEEDS CLARIFICATION] markers in docs/PRD.md", "profiles": ["hackathon", "product", "experiment"] },
+      { "id": "spec-reviewed", "check": "ledger_has", "cmd": "review", "scope": "spec", "fix": "/forge:review spec", "profiles": ["hackathon", "product"] }
+    ]
+  },
+  "build": {
+    "requires": [
+      { "id": "tasks", "check": "file_exists", "path": "docs/TASKS.md", "fix": "/forge:plan" },
+      { "id": "verify-steps", "check": "tasks_have_verify", "fix": "add a 'Verify:' line to every open task in docs/TASKS.md" },
+      { "id": "ui-mockup", "check": "ui_mockup_approved", "fix": "/forge:design (mockup), then approve it", "profiles": ["hackathon", "product"] }
+    ]
+  },
+  "test": { "requires": [ { "id": "tasks", "check": "file_exists", "path": "docs/TASKS.md", "fix": "/forge:plan" } ] },
+  "review": { "requires": [ { "id": "has-commits", "check": "git_has_commits", "fix": "commit some work first" } ] },
+  "secure": { "requires": [ { "id": "has-commits", "check": "git_has_commits", "fix": "commit the work so the history can be scanned" } ] },
+  "ship": {
+    "requires": [
+      { "id": "ci-green", "check": "ci_green", "fix": "fix CI (see the failing step), then push again" },
+      { "id": "tasks-done", "check": "tasks_done", "fix": "/forge:build (open tasks) or tag them [later]" },
+      { "id": "secure-fresh", "check": "ledger_fresh", "cmd": "secure", "fix": "/forge:secure ship" },
+      { "id": "no-high-findings", "check": "no_open_findings", "severity": ["critical", "high"], "fix": "/forge:review (resolve open findings)", "profiles": ["hackathon", "product", "experiment"] },
+      { "id": "ui-audit", "check": "ui_audit_logged", "fix": "/forge:ui audit", "profiles": ["hackathon", "product"] },
+      { "id": "caps", "check": "file_contains", "path": "docs/DEPLOY.md", "pattern": "(?i)caps?\\b.*(sized|set|reviewed)", "fix": "size the rate limits and daily caps for the expected peak and note it in docs/DEPLOY.md", "profiles": ["hackathon", "product"] }
+    ]
+  },
+  "finish": { "requires": [ { "id": "ci-green", "check": "ci_green", "fix": "fix CI first" } ] },
+  "submit": {
+    "requires": [
+      { "id": "rules", "check": "file_exists", "path": "docs/RULES.md", "fix": "/forge:rules" },
+      { "id": "shipped", "check": "ledger_has", "cmd": "ship", "result": "pass", "fix": "/forge:ship" },
+      { "id": "live", "check": "url_ok", "configKey": "liveUrl", "fix": "set liveUrl in .forge/config.json and make sure it answers" },
+      { "id": "video", "check": "file_contains", "path": "docs/SUBMISSION.md", "pattern": "(?i)(youtu\\.?be|vimeo\\.com|loom\\.com)/", "fix": "/reel:make, then add the video link to docs/SUBMISSION.md" },
+      { "id": "public-reviewed", "check": "ledger_has", "cmd": "secure", "scope": "public", "fix": "/forge:secure public" },
+      { "id": "form-answers", "check": "file_not_contains", "path": "docs/SUBMISSION.md", "pattern": "<paste|TODO|TBD", "fix": "fill every field in docs/SUBMISSION.md" }
+    ]
+  }
+}

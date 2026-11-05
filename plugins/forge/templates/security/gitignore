@@ -1,0 +1,20 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+# build and caches
+node_modules/
+dist/
+build/
+coverage/
+.next/
+.vercel/
+.turbo/
+.forge/cache/
+# local
+.DS_Store
+*.log
+.claude/settings.local.json

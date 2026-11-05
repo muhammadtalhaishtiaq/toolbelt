@@ -1,0 +1,14 @@
+{
+  "description": "forge: start each session knowing the project stage; block secret leaks; warn on dangerous code and on a weakened quality bar; enforce the project's own /forge:rule rules.",
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/status.mjs\"", "timeout": 10 } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Read|Edit|Write|MultiEdit|Bash|NotebookEdit", "hooks": [ { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs\" pre", "timeout": 10 } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs\" post", "timeout": 10 } ] }
+    ]
+  }
+}
