@@ -1,0 +1,9 @@
+{
+  "name": "reel",
+  "version": "0.1.0",
+  "description": "Make a demo film of any live product from one command: brief, story to time, a playable storyboard you approve, scripted 2x screen captures of real flows, Kokoro voiceover, licensed music and sound effects, HyperFrames motion graphics, QA (contact sheet, loudness, sharpness, claim tracing), then the YouTube, X and poster kit.",
+  "author": { "name": "Talha Ishtiaq", "url": "https://github.com/muhammadtalhaishtiaq" },
+  "repository": "https://github.com/muhammadtalhaishtiaq/toolbelt",
+  "license": "MIT",
+  "keywords": ["video", "demo", "screen capture", "voiceover", "hyperframes", "launch"]
+}
