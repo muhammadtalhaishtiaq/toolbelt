@@ -5,7 +5,7 @@ import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { execFileSync } from 'node:child_process'
-import { runGate, record, openTasks, tasksMissingVerify } from './check.mjs'
+import { runGate, record, openTasks, tasksMissingVerify, pickField } from './check.mjs'
 
 function project(files = {}, cfg = { profile: 'hackathon', ui: false }) {
   const r = mkdtempSync(join(tmpdir(), 'forge-'))
@@ -72,4 +72,10 @@ test('UI project needs an approved mockup before build', async () => {
   assert.equal((await runGate(r, 'build', green)).pass, false)
   const { r: r2 } = project({ 'docs/TASKS.md': '- [ ] T1 page\n  Verify: open it', 'docs/DECISIONS.md': '## 2026-11-05 — Home mockup approved' }, { profile: 'product', ui: true })
   assert.equal((await runGate(r2, 'build', green)).pass, true)
+})
+test('STATUS fields parse with or without bold', () => {
+  assert.equal(pickField('**Stage:** 3 Build\n**Next:** /forge:build T7', 'Stage'), '3 Build')
+  assert.equal(pickField('**Stage:** 3 Build\n**Next:** /forge:build T7', 'Next'), '/forge:build T7')
+  assert.equal(pickField('Stage: 1 Shape', 'Stage'), '1 Shape')
+  assert.equal(pickField('**Stage**: 2 Spec', 'Stage'), '2 Spec')
 })

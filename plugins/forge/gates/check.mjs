@@ -105,9 +105,11 @@ export function record(r, entry) {
   appendFileSync(join(r, '.forge/ledger.jsonl'), JSON.stringify({ at: new Date().toISOString(), commit: head(r), ...entry }) + '\n')
 }
 
+export const pickField = (md, k) => (md.match(new RegExp(`^[*_\\s]*${k}[*_\\s]*:[*_\\s]*(.+)$`, 'im')) ?? [])[1]?.trim()
+
 function status(r) {
   const s = read(r, 'STATUS.md'); if (s === null) return null
-  const pick = k => (s.match(new RegExp(`^\\**${k}\\**\\s*:\\s*(.+)$`, 'im')) ?? [])[1]?.trim()
+  const pick = k => pickField(s, k)
   const cfg = config(r); const t = read(r, 'docs/TASKS.md'); let f = []; try { f = JSON.parse(read(r, '.forge/findings.json') ?? '[]') } catch {}
   let due = ''; if (cfg.deadline) { const ms = Date.parse(cfg.deadline) - Date.now(); due = Number.isNaN(ms) ? '' : ms < 0 ? ' · deadline passed' : ` · due in ${Math.floor(ms / 864e5)}d ${Math.floor(ms % 864e5 / 36e5)}h` }
   return { project: cfg.name ?? '', profile: cfg.profile ?? 'product', due, stage: pick('Stage') ?? 'unknown', next: pick('Next') ?? 'run /forge:where', openTasks: t ? openTasks(t).length : null, openFindings: f.filter(x => x.status === 'open').length, last: ledger(r).filter(x => !x.type).slice(-3).map(x => `${x.cmd}${x.scope ? ' ' + x.scope : ''} ${x.result}`) }
