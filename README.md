@@ -12,6 +12,7 @@ Nothing here is trying to be a polished product. It's the stuff I actually reach
 | [`plugins/forge`](./plugins/forge) | Project lifecycle for Claude Code: router for vague requests, evidence-based gates, review agents, build loops, security baseline, anti-slop UI lane. |
 | [`plugins/reel`](./plugins/reel) | Demo films from one command: story, playable board, 2× captures, AI voice, licensed music, QA, publish kit. |
 | [`tools/md-reader`](./tools/md-reader) | Single-file HTML markdown reader & editor — open, edit, highlight, and export `.md` files with zero installs. Works offline, just open the file in a browser. |
+| [`plugins/eli5`](./plugins/eli5) | ELI5 picture-explainer skill for Claude Code and Codex. |
 
 ## Start here (Claude Code plugins)
 

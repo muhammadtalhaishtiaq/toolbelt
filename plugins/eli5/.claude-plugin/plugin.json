@@ -1,0 +1,9 @@
+{
+  "name": "eli5",
+  "description": "Explain topics simply with a self-contained HTML picture explainer.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Talha Ishtiaq",
+    "url": "https://github.com/muhammadtalhaishtiaq"
+  }
+}
