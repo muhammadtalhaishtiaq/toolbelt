@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)", "Bash(npm run build:*)", "Bash(npm run lint:*)", "Bash(npm run typecheck:*)",
+      "Bash(npm test:*)", "Bash(npm run test:*)", "Bash(npx vitest:*)",
+      "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)",
+      "Bash(gh run list:*)", "Bash(gh run view:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)", "Bash(npm install:*)", "Bash(npm i:*)", "Bash(pnpm add:*)", "Bash(yarn add:*)",
+      "Bash(npm publish:*)", "Bash(vercel:*)", "Bash(netlify:*)", "Bash(railway:*)", "Bash(fly:*)",
+      "Bash(supabase db push:*)", "Bash(gh repo edit:*)", "Bash(gh repo create:*)", "Bash(gh release:*)",
+      "Bash(rm -rf:*)", "Bash(git reset --hard:*)", "Bash(git push --force:*)"
+    ],
+    "deny": [
+      "Read(./**/.env)", "Read(./**/.env.local)", "Read(./**/.env.*.local)", "Read(./**/.env.production)",
+      "Read(./**/*.pem)", "Read(./**/*.key)"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "{{NAME}}",
+  "profile": "{{PROFILE}}",
+  "deadline": "{{DEADLINE_ISO}}",
+  "ui": {{HAS_UI}},
+  "liveUrl": "",
+  "stack": "{{STACK}}"
+}

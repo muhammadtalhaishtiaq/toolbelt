@@ -1,0 +1,10 @@
+{
+  "name": "forge",
+  "version": "0.1.0",
+  "description": "Run any project from first idea to launch: a router that understands vague requests, lifecycle gates on real evidence, review agents, build loops, a security baseline at every stage and a UI lane that refuses AI-looking design.",
+  "author": { "name": "Talha Ishtiaq", "url": "https://github.com/muhammadtalhaishtiaq" },
+  "homepage": "https://github.com/muhammadtalhaishtiaq/toolbelt/tree/main/plugins/forge",
+  "repository": "https://github.com/muhammadtalhaishtiaq/toolbelt",
+  "license": "MIT",
+  "keywords": ["sdlc", "lifecycle", "spec", "tdd", "review", "security", "gates"]
+}

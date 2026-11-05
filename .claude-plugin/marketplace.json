@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "toolbelt",
+  "description": "Talha's own Claude Code plugins: test an idea (seed), build it right (forge), film it (reel).",
+  "owner": { "name": "Talha Ishtiaq", "url": "https://github.com/muhammadtalhaishtiaq" },
+  "plugins": [
+    { "name": "seed", "source": "./plugins/seed", "description": "Generate ideas and test them on a simulated crowd; outputs IDEA-BRIEF.md and a visual IDEA-BOARD.html.", "category": "productivity" },
+    { "name": "forge", "source": "./plugins/forge", "description": "Project lifecycle from start to launch: router for vague requests, evidence-based gates, agents, loops, security baseline, anti-slop UI lane.", "category": "development" },
+    { "name": "reel", "source": "./plugins/reel", "description": "Make a demo film of any live product from one command: story, playable board, 2x captures, AI voice, licensed music, QA, publish kit.", "category": "productivity" }
+  ]
+}
